@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Soni Saraswat | Analytics & BI Professional</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --pink-50:#fff0f6;--pink-100:#ffd6e7;--pink-200:#ffb3ce;--pink-300:#ff8db5;
+    --pink-400:#ff6b9d;--pink-500:#e84393;--pink-600:#c4307a;--pink-700:#9b1f5e;
+    --pink-800:#6e1040;--pink-900:#420824;--blush:#fce4ec;--dusty:#f8bbd0;
+    --cream:#fff9fb;--text-dark:#2a0a18;--text-mid:#5c2040;--text-light:#9e6880;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  section[id]{scroll-margin-top:74px;}
+  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.4;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--pink-100);transition:box-shadow .3s;}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--pink-600);}
+  .nav-links{display:flex;gap:1.6rem;list-style:none;}
+  .nav-links a{text-decoration:none;color:var(--text-mid);font-size:.82rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;position:relative;padding-bottom:3px;transition:color .25s;}
+  .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--pink-500);transition:width .3s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--pink-500);}
+  .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+
+  /* HERO */
+  #hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 5rem 4rem;position:relative;overflow:hidden;}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;}
+  .b1{width:600px;height:600px;background:var(--pink-200);top:-100px;right:-150px;}
+  .b2{width:400px;height:400px;background:var(--pink-300);bottom:-50px;left:30%;}
+  .b3{width:250px;height:250px;background:var(--dusty);top:40%;left:-80px;}
+  .hero-text{position:relative;z-index:2;}
+  .hero-tag{display:inline-block;background:var(--pink-100);color:var(--pink-600);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.35rem 1rem;border-radius:999px;margin-bottom:1.5rem;animation:fadeUp .6s ease both;}
+  .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:700;line-height:1.05;color:var(--pink-800);animation:fadeUp .6s .1s ease both;}
+  .hero-name span{color:var(--pink-500);font-style:italic;}
+  .hero-sub{font-size:1rem;color:var(--text-mid);margin:1.4rem 0 .7rem;line-height:1.75;animation:fadeUp .6s .2s ease both;}
+  .hero-quote{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--pink-500);font-style:italic;margin-bottom:2.2rem;animation:fadeUp .6s .25s ease both;}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .6s .3s ease both;}
+  .btn-p{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--pink-500),var(--pink-600));color:#fff;padding:.85rem 2rem;border-radius:999px;text-decoration:none;font-weight:600;font-size:.88rem;box-shadow:0 8px 24px rgba(232,67,147,.35);transition:all .3s;}
+  .btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(232,67,147,.45);}
+  .btn-o{display:inline-flex;align-items:center;gap:.5rem;border:2px solid var(--pink-400);color:var(--pink-600);padding:.85rem 2rem;border-radius:999px;text-decoration:none;font-weight:600;font-size:.88rem;transition:all .3s;background:transparent;}
+  .btn-o:hover{background:var(--pink-400);color:#fff;transform:translateY(-3px);}
+  .hero-vis{display:flex;flex-direction:column;align-items:flex-end;gap:1.1rem;position:relative;z-index:2;animation:fadeIn .8s .3s ease both;}
+  .stat-card{background:#fff;border-radius:18px;padding:1.1rem 1.6rem;box-shadow:0 8px 32px rgba(200,60,120,.12);border:1px solid var(--pink-100);display:flex;align-items:center;gap:.9rem;transition:transform .3s;}
+  .stat-card:hover{transform:translateY(-4px);}
+  .stat-icon{font-size:1.6rem;}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--pink-600);}
+  .stat-lbl{font-size:.72rem;color:var(--text-light);font-weight:500;text-transform:uppercase;letter-spacing:.08em;}
+
+  /* SECTIONS */
+  section{padding:5.5rem 5rem;}
+  .sec-hdr{text-align:center;margin-bottom:3.5rem;}
+  .sec-tag{display:inline-block;background:var(--pink-100);color:var(--pink-600);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.28rem .85rem;border-radius:999px;margin-bottom:.8rem;}
+  .sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;color:var(--pink-800);}
+  .sec-line{width:56px;height:3px;background:linear-gradient(90deg,var(--pink-400),var(--pink-300));margin:.9rem auto 0;border-radius:2px;}
+
+  /* ABOUT */
+  #about{background:#fff;}
+  .about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:4.5rem;align-items:center;}
+  .about-wrap{position:relative;width:300px;height:360px;}
+  .about-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--pink-200),var(--pink-400));border-radius:40% 60% 50% 70%/50% 40% 60% 50%;animation:morph 8s ease-in-out infinite;}
+  @keyframes morph{0%,100%{border-radius:40% 60% 50% 70%/50% 40% 60% 50%;}50%{border-radius:60% 40% 70% 50%/40% 60% 50% 60%;}}
+  .about-init{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:5.5rem;font-weight:700;color:#fff;letter-spacing:-.05em;}
+  .about-badge{position:absolute;bottom:-18px;right:-18px;background:var(--pink-500);color:#fff;border-radius:16px;padding:.9rem 1.1rem;text-align:center;box-shadow:0 8px 24px rgba(232,67,147,.3);}
+  .about-badge-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;display:block;}
+  .about-badge-txt{font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
+  .about-content p{color:var(--text-mid);line-height:1.85;font-size:.95rem;margin-bottom:1.1rem;}
+  .pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem;}
+  .pill{background:var(--pink-50);border:1px solid var(--pink-200);color:var(--pink-700);padding:.35rem .9rem;border-radius:999px;font-size:.78rem;font-weight:500;transition:all .2s;}
+  .pill:hover{background:var(--pink-200);}
+
+  /* SKILLS */
+  #skills{background:var(--pink-50);}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.4rem;}
+  .skill-cat{background:#fff;border-radius:20px;padding:1.6rem;border:1px solid var(--pink-100);box-shadow:0 4px 16px rgba(200,60,120,.07);transition:transform .3s,box-shadow .3s;}
+  .skill-cat:hover{transform:translateY(-6px);box-shadow:0 14px 36px rgba(200,60,120,.14);}
+  .skill-cat-icon{font-size:1.8rem;margin-bottom:.7rem;}
+  .skill-cat-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--pink-700);margin-bottom:.9rem;}
+  .bar-item{margin-bottom:.8rem;}
+  .bar-label{display:flex;justify-content:space-between;font-size:.78rem;color:var(--text-mid);margin-bottom:.3rem;font-weight:500;}
+  .bar-track{height:5px;background:var(--pink-100);border-radius:999px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--pink-400),var(--pink-600));animation:growBar 1.2s ease both;}
+  @keyframes growBar{from{width:0;}}
+
+  /* PROJECTS */
+  #projects{background:#fff;}
+  .proj-section-label{display:flex;align-items:center;gap:.7rem;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pink-600);margin-bottom:1.4rem;}
+  .proj-section-label::before{content:'';width:26px;height:2px;background:var(--pink-400);}
+  .gh-banner{display:inline-flex;align-items:center;gap:.6rem;background:var(--pink-800);color:#fff;padding:.6rem 1.4rem;border-radius:999px;font-size:.82rem;font-weight:600;text-decoration:none;margin-bottom:2.5rem;transition:all .3s;box-shadow:0 4px 16px rgba(110,16,64,.3);}
+  .gh-banner:hover{background:var(--pink-600);transform:translateY(-2px);}
+  .gh-banner svg{width:16px;height:16px;fill:#fff;}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.6rem;}
+  .proj-card{border-radius:22px;overflow:hidden;border:1px solid var(--pink-100);box-shadow:0 4px 20px rgba(200,60,120,.08);transition:all .35s;background:#fff;display:flex;flex-direction:column;}
+  .proj-card:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(200,60,120,.18);}
+  .proj-head{padding:1.7rem 1.7rem 1.1rem;background:linear-gradient(135deg,var(--pink-50),var(--blush));border-bottom:1px solid var(--pink-100);}
+  .proj-type{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pink-500);margin-bottom:.5rem;}
+  .proj-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--pink-800);line-height:1.2;margin-bottom:.5rem;}
+  .proj-body{padding:1.1rem 1.7rem 1.6rem;flex:1;display:flex;flex-direction:column;}
+  .proj-desc{font-size:.86rem;color:var(--text-mid);line-height:1.72;margin-bottom:1rem;flex:1;}
+  .proj-impact{background:var(--pink-50);border-left:3px solid var(--pink-400);padding:.6rem .9rem;border-radius:0 9px 9px 0;font-size:.8rem;color:var(--pink-700);font-weight:500;margin-bottom:1rem;}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1rem;}
+  .tag{background:var(--pink-100);color:var(--pink-700);padding:.22rem .7rem;border-radius:999px;font-size:.72rem;font-weight:600;}
+  .proj-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--pink-500);font-size:.82rem;font-weight:600;text-decoration:none;transition:gap .2s;}
+  .proj-link:hover{gap:.7rem;}
+  .gh-badge-sm{display:inline-flex;align-items:center;gap:.35rem;background:var(--pink-800);color:#fff;padding:.2rem .7rem;border-radius:999px;font-size:.7rem;font-weight:600;}
+
+  /* EDUCATION LADDER */
+  #education{background:var(--pink-50);}
+  .edu-ladder{position:relative;max-width:720px;margin:0 auto;}
+  .edu-ladder::before{content:'';position:absolute;left:30px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--pink-300),var(--pink-500),var(--pink-700));border-radius:2px;}
+  .edu-rung{position:relative;padding:0 0 2.2rem 82px;}
+  .edu-rung:last-child{padding-bottom:0;}
+  .edu-dot{position:absolute;left:14px;top:8px;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;border:3px solid #fff;box-shadow:0 4px 12px rgba(200,60,120,.3);z-index:1;}
+  .d1{background:var(--pink-300);} .d2{background:var(--pink-400);} .d3{background:var(--pink-600);} .d4{background:var(--pink-800);}
+  .edu-card{background:#fff;border-radius:18px;padding:1.4rem 1.8rem;border:1px solid var(--pink-100);box-shadow:0 4px 16px rgba(200,60,120,.08);transition:transform .3s;}
+  .edu-card:hover{transform:translateX(6px);}
+  .edu-year{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pink-500);margin-bottom:.35rem;}
+  .edu-degree{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--pink-800);margin-bottom:.25rem;}
+  .edu-school{font-size:.88rem;color:var(--text-mid);font-weight:500;}
+  .edu-gpa{display:inline-block;margin-top:.5rem;background:var(--pink-100);color:var(--pink-700);padding:.18rem .75rem;border-radius:999px;font-size:.75rem;font-weight:600;}
+  .ladder-label{display:flex;align-items:center;gap:1rem;font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--pink-400);text-transform:uppercase;margin-bottom:2.5rem;}
+  .ladder-label::after{content:'';flex:1;height:1px;background:var(--pink-200);}
+
+  /* EXPERIENCE */
+  #experience{background:#fff;}
+  .exp-stack{display:flex;flex-direction:column;gap:1.4rem;max-width:880px;margin:0 auto;}
+  .exp-card{background:#fff;border-radius:20px;padding:1.8rem 2.2rem;border:1px solid var(--pink-100);box-shadow:0 4px 20px rgba(200,60,120,.07);display:grid;grid-template-columns:auto 1fr;gap:1.4rem;transition:transform .3s,box-shadow .3s;}
+  .exp-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(200,60,120,.14);}
+  .exp-ico{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--pink-100),var(--pink-200));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+  .exp-role{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--pink-800);}
+  .exp-co{font-size:.88rem;color:var(--pink-500);font-weight:600;margin:.2rem 0 .1rem;}
+  .exp-per{font-size:.75rem;color:var(--text-light);font-weight:500;}
+  .exp-list{margin-top:.8rem;padding-left:0;list-style:none;}
+  .exp-list li{font-size:.86rem;color:var(--text-mid);line-height:1.72;margin-bottom:.45rem;padding-left:1.1rem;position:relative;}
+  .exp-list li::before{content:'◆';position:absolute;left:0;color:var(--pink-300);font-size:.5rem;top:.45em;}
+
+  /* CERTIFICATIONS */
+  #certifications{background:var(--pink-50);}
+  .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem;}
+  .cert-card{background:#fff;border-radius:18px;padding:1.4rem 1.6rem;border:1px solid var(--pink-100);box-shadow:0 4px 14px rgba(200,60,120,.07);display:flex;align-items:flex-start;gap:.9rem;transition:all .3s;}
+  .cert-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(200,60,120,.15);border-color:var(--pink-300);}
+  .cert-ico{width:42px;height:42px;border-radius:11px;flex-shrink:0;background:linear-gradient(135deg,var(--pink-400),var(--pink-600));display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;}
+  .cert-name{font-size:.88rem;font-weight:600;color:var(--pink-800);line-height:1.3;margin-bottom:.25rem;}
+  .cert-iss{font-size:.75rem;color:var(--text-light);}
+  .cert-date{display:inline-block;margin-top:.45rem;font-size:.7rem;font-weight:700;color:var(--pink-500);letter-spacing:.08em;text-transform:uppercase;}
+
+  /* CONTACT */
+  #contact{background:linear-gradient(135deg,var(--pink-700),var(--pink-900));text-align:center;padding:5rem;position:relative;overflow:hidden;}
+  #contact::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
+  .contact-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:#fff;margin-bottom:.8rem;}
+  .contact-sub{color:#f48fb1;font-size:1rem;margin-bottom:2.2rem;}
+  .contact-links{display:flex;justify-content:center;gap:1.3rem;flex-wrap:wrap;margin-bottom:2rem;}
+  .c-link{display:inline-flex;align-items:center;gap:.55rem;background:rgba(255,255,255,.12);color:#fff;padding:.8rem 1.6rem;border-radius:999px;text-decoration:none;font-weight:600;font-size:.88rem;border:1px solid rgba(255,255,255,.25);transition:all .3s;backdrop-filter:blur(8px);}
+  .c-link:hover{background:rgba(255,255,255,.25);transform:translateY(-3px);}
+  .c-link svg{width:17px;height:17px;fill:#fff;}
+  .contact-info{color:#f48fb1;font-size:.95rem;}
+  .contact-info a{color:#ffd6e7;text-decoration:none;font-weight:600;}
+
+  footer{background:var(--pink-900);color:var(--pink-300);text-align:center;padding:1.6rem;font-size:.8rem;}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  .reveal{opacity:0;transform:translateY(28px);transition:all .6s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{gap:.9rem;}
+    #hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem;}
+    .hero-vis{align-items:flex-start;flex-direction:row;flex-wrap:wrap;}
+    section{padding:4rem 1.5rem;}
+    .about-grid{grid-template-columns:1fr;gap:2.5rem;}
+    .about-wrap{width:190px;height:230px;}
+    .exp-card{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-logo">Soni Saraswat</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="scroll-margin-top:0;">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="hero-text">
+    <span class="hero-tag">✦ Open to New Opportunities</span>
+    <h1 class="hero-name">Soni<br/><span>Saraswat</span></h1>
+    <p class="hero-sub">Senior Analytics & Business Intelligence Professional with 5+ years turning raw data into boardroom-ready stories.</p>
+    <p class="hero-quote">"I ask 'why' 5 times for a living."</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-p nav-scroll">✦ View My Work</a>
+      <a href="https://www.linkedin.com/in/soni-saraswat/" target="_blank" class="btn-o">LinkedIn ↗</a>
+      <a href="https://github.com/sonisaraswat1622" target="_blank" class="btn-o">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="hero-vis">
+    <div class="stat-card"><div class="stat-icon">📊</div><div><div class="stat-num">5+</div><div class="stat-lbl">Years Experience</div></div></div>
+    <div class="stat-card"><div class="stat-icon">⚡</div><div><div class="stat-num">30%</div><div class="stat-lbl">Faster Reporting</div></div></div>
+    <div class="stat-card"><div class="stat-icon">🎯</div><div><div class="stat-num">3.92</div><div class="stat-lbl">MBA GPA</div></div></div>
+    <div class="stat-card"><div class="stat-icon">🏆</div><div><div class="stat-num">5</div><div class="stat-lbl">Certifications</div></div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div><div class="about-wrap"><div class="about-bg"></div><div class="about-init">SS</div><div class="about-badge"><span class="about-badge-num">100%</span><span class="about-badge-txt">Audit Compliant</span></div></div></div>
+    <div class="about-content reveal">
+      <span class="sec-tag">About Me</span>
+      <h2 class="sec-title" style="text-align:left;margin:.5rem 0 1.2rem;">Turning Data into<br/><em style="color:var(--pink-500);">Decisions</em></h2>
+      <p>I'm a Senior Analytics & BI Professional based in Dallas, TX with a passion for making complex data simple, actionable, and visually compelling. With 5+ years spanning banking, operations, and AI-enabled reporting, I bridge the gap between raw numbers and strategic clarity.</p>
+      <p>At ICICI Bank, I led enterprise analytics for one of India's largest banks — building automated pipelines, standardizing KPIs, and cutting reporting time by 30%. Today I'm bringing that same discipline to AI-driven tools and self-service dashboards that leaders can actually trust.</p>
+      <p>When I'm not wrangling SQL or building Power BI dashboards, I'm prototyping AI tools that BAs actually need — from chatbots to invoice scanners to chess-playing algorithms.</p>
+      <div class="pills">
+        <span class="pill">Power BI</span><span class="pill">Tableau</span><span class="pill">SQL</span>
+        <span class="pill">Python</span><span class="pill">Machine Learning</span><span class="pill">RAG / AI</span>
+        <span class="pill">Azure AI</span><span class="pill">JIRA</span><span class="pill">Excel</span>
+        <span class="pill">QLIK</span><span class="pill">Confluence</span><span class="pill">ServiceNow</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-hdr reveal"><span class="sec-tag">Expertise</span><h2 class="sec-title">Technical Skills</h2><div class="sec-line"></div></div>
+  <div class="skills-grid">
+    <div class="skill-cat reveal"><div class="skill-cat-icon">🗄️</div><div class="skill-cat-title">Data & Analytics</div>
+      <div class="bar-item"><div class="bar-label"><span>SQL (CTEs, Windows, Advanced)</span><span>95%</span></div><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Advanced Excel</span><span>92%</span></div><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Python</span><span>80%</span></div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div>
+    </div>
+    <div class="skill-cat reveal"><div class="skill-cat-icon">📊</div><div class="skill-cat-title">BI & Visualization</div>
+      <div class="bar-item"><div class="bar-label"><span>Power BI (PL-300 Certified)</span><span>95%</span></div><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Tableau</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>QLIK</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div>
+    </div>
+    <div class="skill-cat reveal"><div class="skill-cat-icon">🤖</div><div class="skill-cat-title">AI & Machine Learning</div>
+      <div class="bar-item"><div class="bar-label"><span>Generative AI / RAG</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Machine Learning Models</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Azure AI (AI-900)</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
+    </div>
+    <div class="skill-cat reveal"><div class="skill-cat-icon">🔧</div><div class="skill-cat-title">Tools & Platforms</div>
+      <div class="bar-item"><div class="bar-label"><span>JIRA / Confluence</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>ServiceNow</span><span>80%</span></div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Microsoft Visio</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-hdr reveal"><span class="sec-tag">Portfolio</span><h2 class="sec-title">Projects & Builds</h2><div class="sec-line"></div></div>
+  <div style="text-align:center;margin-bottom:2.8rem;" class="reveal">
+    <a href="https://github.com/sonisaraswat1622" target="_blank" class="gh-banner">
+      <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      View All on GitHub — @sonisaraswat1622
+    </a>
+  </div>
+  <div class="proj-section-label reveal">🌐 GitHub Live Projects — Click to open</div>
+  <div class="projects-grid">
+    <div class="proj-card reveal">
+      <div class="proj-head"><div class="proj-type">🤖 AI · NLP · Data Analysis</div><div class="proj-title">Sales Insights Chatbot</div><span class="gh-badge-sm"><svg style="width:11px;height:11px;fill:#fff" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> Live on GitHub</span></div>
+      <div class="proj-body"><p class="proj-desc">AI-powered chatbot that analyzes Superstore sales data from CSV files and answers natural language questions using Claude API. No backend required — runs entirely in the browser.</p><div class="proj-impact">📈 Instant natural-language insights from structured sales data</div><div class="proj-tags"><span class="tag">Claude API</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">NLP</span></div><a href="https://sonisaraswat1622.github.io/sales-insights-chatbot/" target="_blank" class="proj-link">View Live Project →</a></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-head"><div class="proj-type">🧾 AI Vision · Data Extraction</div><div class="proj-title">AI Invoice Scanner</div><span class="gh-badge-sm"><svg style="width:11px;height:11px;fill:#fff" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> Live on GitHub</span></div>
+      <div class="proj-body"><p class="proj-desc">Claude Vision API tool that extracts structured data from invoice/receipt images and exports to Excel/CSV. Zero backend — fully browser-based for instant deployment.</p><div class="proj-impact">💼 Automates manual invoice data entry into structured formats</div><div class="proj-tags"><span class="tag">Claude Vision</span><span class="tag">HTML</span><span class="tag">Excel Export</span><span class="tag">OCR</span></div><a href="https://sonisaraswat1622.github.io/Ai-invoice-scanner/" target="_blank" class="proj-link">View Live Project →</a></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-head"><div class="proj-type">♟️ AI Algorithms · Game Dev</div><div class="proj-title">Smart Chess AI</div><span class="gh-badge-sm"><svg style="width:11px;height:11px;fill:#fff" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> Live on GitHub</span></div>
+      <div class="proj-body"><p class="proj-desc">Browser chess game with AI opponent built using Minimax Algorithm + Alpha-Beta Pruning. Evaluates thousands of positions per move with positional strategy tables. Easy / Medium / Hard modes.</p><div class="proj-impact">🧠 Demonstrates advanced algorithmic thinking & AI decision trees</div><div class="proj-tags"><span class="tag">Minimax</span><span class="tag">Alpha-Beta Pruning</span><span class="tag">JS</span><span class="tag">Game AI</span></div><a href="https://sonisaraswat1622.github.io/smart-chess-ai/" target="_blank" class="proj-link">View Live Project →</a></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-head"><div class="proj-type">💼 Productivity · BA Tools · AI</div><div class="proj-title">BAMate — Business Analyst Friend</div><span class="gh-badge-sm"><svg style="width:11px;height:11px;fill:#fff" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> Live on GitHub</span></div>
+      <div class="proj-body"><p class="proj-desc">9 integrated BA tools in one app — SQL builder, user story generator, RCA analysis, KPI dashboard, stakeholder matrix, process mapper, meeting notes, scope manager, and more.</p><div class="proj-impact">⚡ All-in-one toolkit solving real BA workflow pain points</div><div class="proj-tags"><span class="tag">9 BA Tools</span><span class="tag">SQL Builder</span><span class="tag">KPI</span><span class="tag">HTML/JS</span></div><a href="https://sonisaraswat1622.github.io/BAMate_A_Business_Analyst_Friend/" target="_blank" class="proj-link">View Live Project →</a></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-head"><div class="proj-type">🚗 Machine Learning · Capstone</div><div class="proj-title">Crash Severity Predictor</div></div>
+      <div class="proj-body"><p class="proj-desc">Built and evaluated ML models to predict motor vehicle crash severity, improving accuracy by 22% and enabling data-driven safety investment decisions projected to reduce losses by $1.2M annually.</p><div class="proj-impact">💰 $1.2M projected annual loss reduction through predictive modeling</div><div class="proj-tags"><span class="tag">Machine Learning</span><span class="tag">Python</span><span class="tag">Predictive Modeling</span></div><span style="font-size:.78rem;color:var(--text-light);">Graduate Capstone — University of North Texas</span></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-head"><div class="proj-type">📊 BI · Tableau · Performance</div><div class="proj-title">Business Performance KPI Dashboard</div></div>
+      <div class="proj-body"><p class="proj-desc">Designed Tableau KPI dashboards to identify underperforming business units, driving targeted interventions through clear visual narratives and trend analysis across financial and operational metrics.</p><div class="proj-impact">📈 Drove 18% efficiency improvements through targeted BI insights</div><div class="proj-tags"><span class="tag">Tableau</span><span class="tag">KPI Design</span><span class="tag">BI</span><span class="tag">Data Storytelling</span></div><span style="font-size:.78rem;color:var(--text-light);">Professional Project — ICICI Bank</span></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-head"><div class="proj-type">🏥 GenAI · RAG · Healthcare</div><div class="proj-title">Medical Assistant (RAG-based AI)</div></div>
+      <div class="proj-body"><p class="proj-desc">RAG-based AI assistant using authoritative medical sources to deliver evidence-backed clinical insights — demonstrating responsible AI use in high-stakes decision-support workflows.</p><div class="proj-impact">🤝 Responsible AI implementation with source-grounded answers</div><div class="proj-tags"><span class="tag">RAG</span><span class="tag">Generative AI</span><span class="tag">LLM</span><span class="tag">Python</span></div><span style="font-size:.78rem;color:var(--text-light);">GenAI Program — UT Austin</span></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-head"><div class="proj-type">💬 AI · SQL Integration · Automation</div><div class="proj-title">AI-Enabled Reporting & Chatbot</div></div>
+      <div class="proj-body"><p class="proj-desc">AI-powered analytics interface integrated with SQL databases to automate query resolution and generate natural-language summaries, improving insight accessibility with responsible AI guardrails.</p><div class="proj-impact">🔒 Automated reporting with built-in AI governance guardrails</div><div class="proj-tags"><span class="tag">AI</span><span class="tag">SQL</span><span class="tag">NLP</span><span class="tag">Responsible AI</span></div><span style="font-size:.78rem;color:var(--text-light);">GenAI Program — UT Austin</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION LADDER -->
+<section id="education">
+  <div class="sec-hdr reveal"><span class="sec-tag">Academic Background</span><h2 class="sec-title">Education Ladder</h2><div class="sec-line"></div><p style="color:var(--text-light);margin-top:.8rem;font-size:.88rem;">From foundation to frontier — a progressive academic journey</p></div>
+  <div class="edu-ladder">
+    <div class="ladder-label">Academic Progression ↓</div>
+    <div class="edu-rung reveal"><div class="edu-dot d1">🎓</div><div class="edu-card"><div class="edu-year">Completed May 2019</div><div class="edu-degree">Master of Business Administration</div><div class="edu-school">Marketing & HR Operations · Guru Gobind Singh Indraprastha University, Delhi, India</div><span class="edu-gpa">GPA: 8.53 / 10</span></div></div>
+    <div class="edu-rung reveal"><div class="edu-dot d2">🎓</div><div class="edu-card"><div class="edu-year">Completed May 2025</div><div class="edu-degree">Master of Business Administration (MBA)</div><div class="edu-school">Business Analytics · University of North Texas, Denton, TX</div><span class="edu-gpa">GPA: 3.92 / 4.0</span></div></div>
+    <div class="edu-rung reveal"><div class="edu-dot d3">🤖</div><div class="edu-card"><div class="edu-year">Completed Jan 2026</div><div class="edu-degree">Post Graduate Program in Generative AI for Business Applications</div><div class="edu-school">University of Texas at Austin · McCombs School of Business</div><span class="edu-gpa">Specialized · GenAI · LLMs · AI Strategy</span></div></div>
+    <div class="edu-rung reveal"><div class="edu-dot d4">🏆</div><div class="edu-card" style="border-color:var(--pink-300);background:linear-gradient(135deg,#fff0f6,#fff);"><div class="edu-year">2024 – 2025</div><div class="edu-degree">Industry Certifications Summit</div><div class="edu-school">Microsoft · Tableau · Google · DataCamp</div><div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.7rem;"><span class="tag">PL-300 Power BI</span><span class="tag">Azure AI-900</span><span class="tag">Tableau BI</span><span class="tag">Advanced SQL</span><span class="tag">Google PM</span></div></div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-hdr reveal"><span class="sec-tag">Work History</span><h2 class="sec-title">Professional Experience</h2><div class="sec-line"></div></div>
+  <div class="exp-stack">
+    <div class="exp-card reveal"><div class="exp-ico">🏫</div><div><div class="exp-role">Business Analyst</div><div class="exp-co">Bright Mind Enrichment & Schooling</div><div class="exp-per">July 2025 – Present · Dallas, TX</div><ul class="exp-list"><li>Serve as Head Point of Contact for Operations Analytics, coordinating data delivery across 25 cross-functional teams in a fast-moving, resource-constrained environment.</li><li>Act as trusted analytics partner to leadership — translating operational data into clear narratives that improve adoption and confidence in data-driven decisions.</li></ul></div></div>
+    <div class="exp-card reveal"><div class="exp-ico">🏦</div><div><div class="exp-role">Business Intelligence Analyst <span style="font-size:.78rem;font-weight:400;color:var(--text-light)">(Deputy Manager II equivalent)</span></div><div class="exp-co">ICICI Bank Pvt. Ltd., Delhi, India</div><div class="exp-per">June 2019 – November 2023 · 4.5 Years</div><ul class="exp-list"><li>Led end-to-end delivery of the iLens application — requirements gathering, user stories, UAT coordination, and final enterprise rollout.</li><li>Directed enterprise-level analytics and strategic reporting for finance and operations in a highly regulated banking environment.</li><li>Defined and standardized trusted KPI frameworks enabling consistent metric interpretation across cross-functional stakeholders.</li><li>Built automated SQL-driven reporting pipelines and executive dashboards, reducing turnaround time by 30% and improving forecast accuracy by 25%.</li><li>Translated complex financial and operational data into decision-ready narratives for senior leadership to support planning and trade-off decisions.</li><li>Drove data quality, reconciliation, and governance initiatives — achieving 100% audit compliance and reducing reporting discrepancies by 15%.</li></ul></div></div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="sec-hdr reveal"><span class="sec-tag">Credentials</span><h2 class="sec-title">Certifications</h2><div class="sec-line"></div></div>
+  <div class="certs-grid">
+    <div class="cert-card reveal"><div class="cert-ico">🔷</div><div><div class="cert-name">Microsoft Certified: Power BI Data Analyst Associate (PL-300)</div><div class="cert-iss">Microsoft</div><span class="cert-date">Issued June 2025</span></div></div>
+    <div class="cert-card reveal"><div class="cert-ico">☁️</div><div><div class="cert-name">Microsoft Certified: Azure AI Fundamentals (AI-900)</div><div class="cert-iss">Microsoft</div><span class="cert-date">Issued June 2025</span></div></div>
+    <div class="cert-card reveal"><div class="cert-ico">📊</div><div><div class="cert-name">Tableau Business Intelligence Analyst Professional Certificate</div><div class="cert-iss">Coursera · Tableau</div><span class="cert-date">Coursera Verified</span></div></div>
+    <div class="cert-card reveal"><div class="cert-ico">🗄️</div><div><div class="cert-name">Advanced SQL for Data Analysis</div><div class="cert-iss">DataCamp</div><span class="cert-date">DataCamp Verified</span></div></div>
+    <div class="cert-card reveal"><div class="cert-ico">📋</div><div><div class="cert-name">Foundations of Project Management</div><div class="cert-iss">Google · Coursera</div><span class="cert-date">Coursera Verified</span></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="sec-tag" style="background:rgba(255,255,255,.15);color:#ffd6e7;">Let's Connect</span>
+  <div class="contact-title" style="margin-top:.7rem;">Ready to Work Together?</div>
+  <p class="contact-sub">Open to Analytics, BI, and AI-focused roles in Dallas, TX and beyond.</p>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/soni-saraswat/" target="_blank" class="c-link"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+    <a href="https://github.com/sonisaraswat1622" target="_blank" class="c-link"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
+    <a href="mailto:soni.saraswat1622@gmail.com" class="c-link">📧 Email Me</a>
+  </div>
+  <p class="contact-info">📍 Dallas, TX &nbsp;|&nbsp; 📱 +1 (469) 688-3118 &nbsp;|&nbsp; <a href="mailto:soni.saraswat1622@gmail.com">soni.saraswat1622@gmail.com</a></p>
+</section>
+
+<footer><span style="color:var(--pink-400)">✦</span> Soni Saraswat &nbsp;·&nbsp; Senior Analytics & BI Professional &nbsp;·&nbsp; Dallas, TX &nbsp;<span style="color:var(--pink-400)">✦</span><br/><span style="font-size:.72rem;opacity:.6;margin-top:.3rem;display:block;">Built with precision, powered by data.</span></footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 70); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => ro.observe(el));
+
+  // Nav active + shadow
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow = scrollY > 20 ? '0 4px 24px rgba(200,60,120,.12)' : 'none';
+    let cur = '';
+    sections.forEach(s => { if (scrollY >= s.offsetTop - 110) cur = s.id; });
+    navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
+  });
+
+  // All internal anchor clicks — smooth scroll with nav offset
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      const target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.getBoundingClientRect().top + scrollY - 74, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
